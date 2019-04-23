@@ -36,7 +36,6 @@ if __name__ == '__main__':
 	use_cols = x_train.columns.values
 
 	logger.info('train columns: {} {}'.format(use_cols.shape, use_cols))
-
 	logger.info('data preparation end {}'.format(x_train.shape))
 	
 	# cross validation
@@ -61,6 +60,7 @@ if __name__ == '__main__':
 		list_auc_score.append(sc_auc)
 		logger.info('logloss: {}, auc: {}'.format(sc_logloss, sc_auc))
 
+	# 結果の平均を出力
 	logger.info('logloss: {}, auc: {}'.format(np.mean(list_auc_score), np.mean(sc_auc)))
 	logger.info('')
 	clf = LogisticRegression(random_state=0)
