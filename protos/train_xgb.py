@@ -53,7 +53,16 @@ if __name__ == '__main__':
 	cv = StratifiedKFold(n_splits=5, shuffle=True, random_state=0)
 
 	# parameter search (Grid search)
-	all_params = {'seed': [0]}
+	all_params = {'max_depth': [3, 5, 7],
+				'learning_rate': [0.1],
+				'min_child_weight': [3, 5, 10],
+				'n_estimators': [10000],
+				'colsample_bytree': [0.8, 0.9],
+				'colsample_bylevel': [0.8, 0.9],
+				'reg_alpha': [0, 0.1],
+				'max_delta_step': [0.1],
+			    'seed': [0]
+				}
 	
 	min_score = 100
 	min_params = None
@@ -74,7 +83,7 @@ if __name__ == '__main__':
 			clf.fit(trn_x,
 					trn_y,
 					eval_set=[(val_x, val_y)],
-					early_stopping_rounds=10,
+					early_stopping_rounds=100,
 					eval_metric=gini_xgb
 					)
 
